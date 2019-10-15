@@ -73,5 +73,25 @@ namespace task_1
                 }
             }
         }
+
+        public static double Formula_1(double x) // y = sinx + 1/3 * sin3x.
+        {
+            return (System.Math.Sin(x) + ((1/3) * System.Math.Sin(3 * x)));
+        }
+
+        public static double Formula_2(double x) // y = sinx - (1/3)sin3x + (1/5)sin5x.
+        {
+            return (System.Math.Sin(x) - ((1 / 3) * System.Math.Sin(3 * x)) + ((1 / 5) * System.Math.Sin(5 * x)));
+        }
+
+        public static double Formula_3(double x) // e*sin х.
+        {
+            return (System.Math.Pow(System.Math.E, x) * System.Math.Sin(x));
+        }
+
+        public static double Formula_4(double x) // ???
+        {
+            return (System.Math.Sqrt(x + System.Math.Sqrt(x + System.Math.Sqrt(x))));
+        }
     }
 }
