@@ -6,8 +6,12 @@ namespace task_1
     {
         static void Main(string[] args)
         {
-            Hello.Print();
-            Math.mathListener();
+            //Hello.Print();
+            //Math.mathListener();
+            Array array = new Array(10, 0, 100);
+            array.Print();
+            array.Sort(Array.SortTo.min);
+            array.Print();
         }
     }
 }
