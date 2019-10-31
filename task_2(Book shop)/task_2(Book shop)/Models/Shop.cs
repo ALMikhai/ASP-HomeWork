@@ -8,46 +8,40 @@ namespace task_2_Book_shop_.Models
     public class Shop
     {
         List<Controller> controllers;
+        List<Listener> listeners;
 
         public Shop()
         {
             controllers = new List<Controller>();
+            listeners = new List<Listener>();
             controllers.Add(new Author.AuthorController());
+            listeners.Add(new AuthorMenagerListener());
         }
 
         public void Start()
         {
             string input = "";
 
-            while(input != "exit")
+            while (input != "exit")
             {
                 Console.WriteLine("Pick controller or write 'exit':");
-                foreach(var controll in controllers)
+                for (var i = 0; i < controllers.Count; i++)
                 {
-                    Console.WriteLine(controll);// Нормальный вывод контроллера.
+                    Console.Write(i + " - ");
+                    controllers[i].PrintLabel();
                 }
                 input = Console.ReadLine();
 
-                switch (input)
+                try
                 {
-                    case "0":
-                        {
-                            AuthorMenagerStart();
-                            break;
-                        }
-
-                    default:
-                        {
-                            Console.WriteLine("Incorrect input, try again...");
-                            continue;
-                        }
+                    listeners[Convert.ToInt32(input)].Start(controllers[Convert.ToInt32(input)]);
+                }
+                catch
+                {
+                    Console.WriteLine("Incorrect input, try again...");
+                    continue;
                 }
             }
-        }
-
-        private void AuthorMenagerStart()
-        {
-            // UI для авторов.
         }
     }
 }

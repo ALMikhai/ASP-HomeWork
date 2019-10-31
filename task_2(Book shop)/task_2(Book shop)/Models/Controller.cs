@@ -11,5 +11,9 @@ namespace task_2_Book_shop_.Models
         bool ChangeElement(string id, int fieldNumber, object newField);
         bool DeleteElement(string id);
         object GetOnId(string id);
+        void PrintAll();
+        void PrintInterior();
+        void PrintUI();
+        void PrintLabel();
     }
 }

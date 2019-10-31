@@ -5,7 +5,7 @@ using task_2_Book_shop_.Models.Entity;
 
 namespace task_2_Book_shop_.Models.Entity
 {
-    class Author
+    public class Author
     {
         public string Id { get; protected set; }
         public string FirstName { get; protected set; }
@@ -148,6 +148,37 @@ namespace task_2_Book_shop_.Models.Entity
                     Console.WriteLine("Invalid id or author not found, try again...");
                     return false;
                 }
+            }
+
+            public void PrintAll()
+            {
+                foreach(var author in authors)
+                {
+                    author.Print();
+                    Console.WriteLine();
+                }
+            }
+
+            public void PrintInterior()
+            {
+                Console.WriteLine("0 - Add");
+                Console.WriteLine("1 - Change element");
+                Console.WriteLine("2 - Delete element");
+                Console.WriteLine("3 - Print all");
+                Console.WriteLine("4 - Get on id");
+            }
+
+            public void PrintUI()
+            {
+                Console.WriteLine("0 - ID");
+                Console.WriteLine("1 - First name");
+                Console.WriteLine("2 - Second name");
+                Console.WriteLine("3 - Date of birthday");
+            }
+
+            public void PrintLabel()
+            {
+                Console.WriteLine("Author manager");
             }
         }
     }
