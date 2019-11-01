@@ -1,59 +1,52 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using task_2_Book_shop_.Models.Entity;
 
 namespace task_2_Book_shop_.Models.Entity
 {
-    public class Author
+    class Publishing
     {
         public string Id { get; protected set; }
-        public string FirstName { get; protected set; }
-        public string SecondName { get; protected set; }
-        public DateTime DateOfBirthday { get; protected set; }
+        public string Name { get; protected set; }
 
-        public Author(string id, string firstName, string secondName, DateTime dateOfBirthday)
+        public Publishing(string id, string name)
         {
             Id = id;
-            FirstName = firstName;
-            SecondName = secondName;
-            DateOfBirthday = dateOfBirthday;
+            Name = name;
         }
 
         private void Print()
         {
             Console.WriteLine("-------------------------------------------");
             Console.WriteLine($"Id - {Id}");
-            Console.WriteLine($"First name - {FirstName}");
-            Console.WriteLine($"Second name - {SecondName}");
-            Console.WriteLine($"Date of birthday - {DateOfBirthday}");
+            Console.WriteLine($"Name - {Name}");
             Console.WriteLine("-------------------------------------------");
         }
 
-        public class AuthorController : Controller
+        public class PublishingController : Controller
         {
-            public List<Author> authors { get; private set; }
+            public List<Publishing> publishings { get; private set; }
 
-            public AuthorController()
+            public PublishingController()
             {
-                authors = new List<Author>();
+                publishings = new List<Publishing>();
             }
 
             public bool Add(object obj)
             {
                 try
                 {
-                    if (authors.Find(match => match.Id == (obj as Author).Id) != null)
+                    if (publishings.Find(match => match.Id == (obj as Author).Id) != null)
                     {
                         throw new IdException();
                     }
                     else
                     {
-                        authors.Add(obj as Author);
-                        Console.WriteLine("Author added...");
+                        publishings.Add(obj as Publishing);
+                        Console.WriteLine("Publishing added...");
                     }
                 }
-                catch(IdException e)
+                catch (IdException e)
                 {
                     Console.WriteLine(e.Message);
                     return false;
@@ -64,7 +57,7 @@ namespace task_2_Book_shop_.Models.Entity
 
             public bool ChangeElement(string id, int fieldNumber, object newField)
             {
-                Author author = authors.Find(match => match.Id == id);
+                Publishing publish = publishings.Find(match => match.Id == id);
 
                 switch (fieldNumber)
                 {
@@ -72,7 +65,7 @@ namespace task_2_Book_shop_.Models.Entity
                         {
                             try
                             {
-                                author.Id = newField as string;
+                                publish.Id = newField as string;
                                 return true;
                             }
                             catch
@@ -84,31 +77,7 @@ namespace task_2_Book_shop_.Models.Entity
                         {
                             try
                             {
-                                author.FirstName = newField as string;
-                                return true;
-                            }
-                            catch
-                            {
-                                goto default;
-                            }
-                        }
-                    case 2:
-                        {
-                            try
-                            {
-                                author.SecondName = newField as string;
-                                return true;
-                            }
-                            catch
-                            {
-                                goto default;
-                            }
-                        }
-                    case 3:
-                        {
-                            try
-                            {
-                                author.DateOfBirthday = DateTime.Parse(newField as string);
+                                publish.Name = newField as string;
                                 return true;
                             }
                             catch
@@ -127,7 +96,7 @@ namespace task_2_Book_shop_.Models.Entity
             {
                 try
                 {
-                    authors.Remove(authors.Find(match => match.Id == id));
+                    publishings.Remove(publishings.Find(match => match.Id == id));
                     Console.WriteLine("Author deleted...");
                     return true;
                 }
@@ -141,7 +110,7 @@ namespace task_2_Book_shop_.Models.Entity
             {
                 try
                 {
-                    authors.Find(match => match.Id == id).Print();
+                    publishings.Find(match => match.Id == id).Print();
                     return true;
                 }
                 catch
@@ -153,7 +122,7 @@ namespace task_2_Book_shop_.Models.Entity
 
             public void PrintAll()
             {
-                foreach(var author in authors)
+                foreach (var author in publishings)
                 {
                     author.Print();
                     Console.WriteLine();
@@ -172,14 +141,12 @@ namespace task_2_Book_shop_.Models.Entity
             public void PrintUI()
             {
                 Console.WriteLine("0 - ID");
-                Console.WriteLine("1 - First name");
-                Console.WriteLine("2 - Second name");
-                Console.WriteLine("3 - Date of birthday");
+                Console.WriteLine("1 - Name");
             }
 
             public void PrintLabel()
             {
-                Console.WriteLine("Author manager");
+                Console.WriteLine("Publishing manager");
             }
         }
     }

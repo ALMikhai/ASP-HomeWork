@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using task_2_Book_shop_.Models.Entity;
+using task_2_Book_shop_.Models;
 
 namespace task_2_Book_shop_.Models
 {
@@ -24,15 +25,33 @@ namespace task_2_Book_shop_.Models
                 {
                     case "0":
                         {
-                            controller.Add(new Author("2", "a", "b", "2013-02-23"));
+                            try
+                            {
+                                string id = AnswerGetter.RequestAndGetAnswer("Id");
+                                string firstName = AnswerGetter.RequestAndGetAnswer("First name");
+                                string secondName = AnswerGetter.RequestAndGetAnswer("Second name");
+                                DateTime dateOfBirthday = DateTime.Parse(AnswerGetter.RequestAndGetAnswer("Date of birthday"));
+                                controller.Add(new Author(id, firstName, secondName, dateOfBirthday));
+                            }
+                            catch
+                            {
+                                goto default;
+                            }
                             break;
                         }
                     case "1":
                         {
+                            string id = AnswerGetter.RequestAndGetAnswer("Id");
+                            controller.PrintUI();
+                            string fieldNumber = AnswerGetter.RequestAndGetAnswer("variable field number");
+                            string newField = AnswerGetter.RequestAndGetAnswer("new value");
+                            controller.ChangeElement(id, Convert.ToInt32(fieldNumber), newField);
                             break;
                         }
                     case "2":
                         {
+                            string id = AnswerGetter.RequestAndGetAnswer("Id");
+                            controller.DeleteElement(id);
                             break;
                         }
                     case "3":
@@ -42,6 +61,8 @@ namespace task_2_Book_shop_.Models
                         }
                     case "4":
                         {
+                            string id = AnswerGetter.RequestAndGetAnswer("Id");
+                            controller.GetOnId(id);
                             break;
                         }
                     default:

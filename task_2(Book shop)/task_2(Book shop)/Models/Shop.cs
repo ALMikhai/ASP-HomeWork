@@ -16,6 +16,8 @@ namespace task_2_Book_shop_.Models
             listeners = new List<Listener>();
             controllers.Add(new Author.AuthorController());
             listeners.Add(new AuthorMenagerListener());
+            controllers.Add(new Publishing.PublishingController());
+            listeners.Add(new PublishingManagerListener());
         }
 
         public void Start()
