@@ -18,6 +18,8 @@ namespace task_2_Book_shop_.Models
             listeners.Add(new AuthorMenagerListener());
             controllers.Add(new Publishing.PublishingController());
             listeners.Add(new PublishingManagerListener());
+            controllers.Add(new Genre.PublishingController());
+            listeners.Add(new GenreManagerListener());
         }
 
         public void Start()

@@ -4,12 +4,12 @@ using System.Text;
 
 namespace task_2_Book_shop_.Models.Entity
 {
-    class Publishing
+    class Genre
     {
         public string Id { get; protected set; }
         public string Name { get; protected set; }
 
-        public Publishing(string id, string name)
+        public Genre(string id, string name)
         {
             Id = id;
             Name = name;
@@ -25,25 +25,25 @@ namespace task_2_Book_shop_.Models.Entity
 
         public class PublishingController : Controller
         {
-            public List<Publishing> publishings { get; private set; }
+            public List<Genre> genres { get; private set; }
 
             public PublishingController()
             {
-                publishings = new List<Publishing>();
+                genres = new List<Genre>();
             }
 
             public bool Add(object obj)
             {
                 try
                 {
-                    if (publishings.Find(match => match.Id == (obj as Author).Id) != null)
+                    if (genres.Find(match => match.Id == (obj as Author).Id) != null)
                     {
                         throw new IdException();
                     }
                     else
                     {
-                        publishings.Add(obj as Publishing);
-                        Console.WriteLine("Publishing added...");
+                        genres.Add(obj as Genre);
+                        Console.WriteLine("Genre added...");
                     }
                 }
                 catch (IdException e)
@@ -57,7 +57,7 @@ namespace task_2_Book_shop_.Models.Entity
 
             public bool ChangeElement(string id, int fieldNumber, object newField)
             {
-                Publishing publish = publishings.Find(match => match.Id == id);
+                Genre publish = genres.Find(match => match.Id == id);
 
                 switch (fieldNumber)
                 {
@@ -96,13 +96,13 @@ namespace task_2_Book_shop_.Models.Entity
             {
                 try
                 {
-                    publishings.Remove(publishings.Find(match => match.Id == id));
-                    Console.WriteLine("Author deleted...");
+                    genres.Remove(genres.Find(match => match.Id == id));
+                    Console.WriteLine("Genre deleted...");
                     return true;
                 }
                 catch
                 {
-                    Console.WriteLine("Invalid id or publishing not found, try again...");
+                    Console.WriteLine("Invalid id or genre not found, try again...");
                     return false;
                 }
             }
@@ -110,21 +110,21 @@ namespace task_2_Book_shop_.Models.Entity
             {
                 try
                 {
-                    publishings.Find(match => match.Id == id).Print();
+                    genres.Find(match => match.Id == id).Print();
                     return true;
                 }
                 catch
                 {
-                    Console.WriteLine("Invalid id or publishing not found, try again...");
+                    Console.WriteLine("Invalid id or genre not found, try again...");
                     return false;
                 }
             }
 
             public void PrintAll()
             {
-                foreach (var author in publishings)
+                foreach (var genre in genres)
                 {
-                    author.Print();
+                    genre.Print();
                     Console.WriteLine();
                 }
             }
@@ -146,7 +146,7 @@ namespace task_2_Book_shop_.Models.Entity
 
             public void PrintLabel()
             {
-                Console.WriteLine("Publishing manager");
+                Console.WriteLine("Genre manager");
             }
         }
     }
