@@ -12,7 +12,7 @@ namespace task_2_Book_shop_.Models
         public void Start(object obj)
         {
             Book.BookController controller = obj as Book.BookController;
-
+            
             string input = "";
             while (input != "exit")
             {
@@ -77,6 +77,7 @@ namespace task_2_Book_shop_.Models
                             break;
                         }
                 }
+                Console.WriteLine();
             }
         }
     }

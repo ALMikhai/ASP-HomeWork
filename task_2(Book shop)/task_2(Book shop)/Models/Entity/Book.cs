@@ -33,7 +33,6 @@ namespace task_2_Book_shop_.Models.Entity
             Console.WriteLine($"Date Of Release - {DateOfRelease}");
             Console.WriteLine($"Author Id - {AuthorId}");
             Console.WriteLine($"Pablishing Id - {PablishingId}");
-            //TODO жанры выписать.
             Console.WriteLine($"Number Of Сopies - {NumberOfСopies}");
             Console.WriteLine("-------------------------------------------");
         }

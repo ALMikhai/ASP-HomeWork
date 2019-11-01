@@ -6,9 +6,9 @@ using task_2_Book_shop_.Models;
 
 namespace task_2_Book_shop_.Models
 {
-    public class AuthorMenagerListener : Listener
+    public class AuthorManagerListener : Listener
     {
-        public AuthorMenagerListener() { }
+        public AuthorManagerListener() { }
 
         public void Start(object obj)
         {
@@ -71,6 +71,7 @@ namespace task_2_Book_shop_.Models
                             break;
                         }
                 }
+                Console.WriteLine();
             }
         }
     }

@@ -3,7 +3,7 @@ using task_2_Book_shop_.Models;
 
 namespace task_2_Book_shop_
 {
-    class Program
+     class Program
     {
         static void Main(string[] args)
         {

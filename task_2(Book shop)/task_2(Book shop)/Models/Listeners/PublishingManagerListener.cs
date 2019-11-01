@@ -68,6 +68,7 @@ namespace task_2_Book_shop_.Models
                             break;
                         }
                 }
+                Console.WriteLine();
             }
         }
     }

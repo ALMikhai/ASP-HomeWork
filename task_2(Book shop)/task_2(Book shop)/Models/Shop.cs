@@ -16,7 +16,7 @@ namespace task_2_Book_shop_.Models
             listeners = new List<Listener>();
 
             controllers.Add(new Author.AuthorController());
-            listeners.Add(new AuthorMenagerListener());
+            listeners.Add(new AuthorManagerListener());
 
             controllers.Add(new Publishing.PublishingController());
             listeners.Add(new PublishingManagerListener());
@@ -49,6 +49,7 @@ namespace task_2_Book_shop_.Models
                 catch
                 {
                     Console.WriteLine("Incorrect input, try again...");
+                    Console.WriteLine();
                     continue;
                 }
             }
