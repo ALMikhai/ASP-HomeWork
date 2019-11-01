@@ -14,12 +14,18 @@ namespace task_2_Book_shop_.Models
         {
             controllers = new List<Controller>();
             listeners = new List<Listener>();
+
             controllers.Add(new Author.AuthorController());
             listeners.Add(new AuthorMenagerListener());
+
             controllers.Add(new Publishing.PublishingController());
             listeners.Add(new PublishingManagerListener());
+
             controllers.Add(new Genre.PublishingController());
             listeners.Add(new GenreManagerListener());
+
+            controllers.Add(new Book.BookController());
+            listeners.Add(new BookManagerListener());
         }
 
         public void Start()

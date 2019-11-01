@@ -22,6 +22,7 @@ namespace task_2_Book_shop_.Models.Entity
             AuthorId = authorId;
             PablishingId = pablishingId;
             Genres = genres;
+            NumberOfСopies = 1;
         }
 
         private void Print()
@@ -48,14 +49,12 @@ namespace task_2_Book_shop_.Models.Entity
 
             public bool Add(object obj)
             {
-                Book found = books.Find(match => match.Id == (obj as Author).Id);
+                Book found = books.Find(match => match.Id == (obj as Book).Id);
 
                 try
                 {
                     if (found != null)
                     {
-                        //found.NumberOfСopies++;
-                        //Console.WriteLine("Copy of book added...");
                         throw new IdException();
                     }
                     else
@@ -183,6 +182,29 @@ namespace task_2_Book_shop_.Models.Entity
                 }
             }
 
+            public void AddCopyOfBook(string id)
+            {
+                Book found = books.Find(match => match.Id == id);
+
+                try
+                {
+                    if (found != null)
+                    {
+                        found.NumberOfСopies++;
+                        Console.WriteLine("Copy of book added...");
+                        
+                    }
+                    else
+                    {
+                        throw new IdException();
+                    }
+                }
+                catch (IdException e)
+                {
+                    Console.WriteLine(e.Message);
+                }
+            }
+
             public void PrintInterior()
             {
                 Console.WriteLine("0 - Add");
@@ -190,6 +212,7 @@ namespace task_2_Book_shop_.Models.Entity
                 Console.WriteLine("2 - Delete element");
                 Console.WriteLine("3 - Print all");
                 Console.WriteLine("4 - Get on id");
+                Console.WriteLine("5 - Add copy");
             }
 
             public void PrintUI()
