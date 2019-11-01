@@ -27,7 +27,6 @@ namespace task_2_Book_shop_.Models
                             controller.Add(new Author("2", "a", "b", "2013-02-23"));
                             break;
                         }
-
                     case "1":
                         {
                             break;

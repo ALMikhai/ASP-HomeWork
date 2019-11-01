@@ -30,10 +30,12 @@ namespace task_2_Book_shop_.Models.Entity
 
         private void Print()
         {
+            Console.WriteLine("-------------------------------------------");
             Console.WriteLine($"Id - {Id}");
             Console.WriteLine($"First name - {FirstName}");
             Console.WriteLine($"Second name - {SecondName}");
             Console.WriteLine($"Date of birthday - {DateOfBirthday}");
+            Console.WriteLine("-------------------------------------------");
         }
 
         public class AuthorController : Controller
@@ -49,12 +51,19 @@ namespace task_2_Book_shop_.Models.Entity
             {
                 try
                 {
-                    authors.Add(obj as Author);
-                    Console.WriteLine("Author added...");
+                    if (authors.Find(match => match.Id == (obj as Author).Id) != null)
+                    {
+                        throw new IdException();
+                    }
+                    else
+                    {
+                        authors.Add(obj as Author);
+                        Console.WriteLine("Author added...");
+                    }
                 }
-                catch
+                catch(IdException e)
                 {
-                    Console.WriteLine("Failed to add new item, try again...");
+                    Console.WriteLine(e.Message);
                     return false;
                 }
 
