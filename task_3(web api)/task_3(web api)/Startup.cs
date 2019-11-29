@@ -26,15 +26,17 @@ namespace task_3_web_api_
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+            services.AddTransient<IMessageSender, SmsMessageSender>(); //task_7(как sender узнает инфу о куках или полях сессии?).
+            services.AddTransient<MessageService>();
         }
 
-        public void Configure(IApplicationBuilder app)
+        public void Configure(IApplicationBuilder app, MessageService messageService)
         { 
             app.UseDeveloperExceptionPage();
 
             app.UseHttpsRedirection();
 
-            app.UseStaticFiles();
+            app.UseStaticFiles(); // task_6
 
             app.UseRouting();
 
@@ -57,6 +59,8 @@ namespace task_3_web_api_
 
             app.UseMiddleware<DemidovichMiddleware>(); // task_4
             app.UseMiddleware<OperationsMiddleware>(); // task_5
+
+            app.Run(async context => { await context.Response.WriteAsync(messageService.Send()); });
 
             app.UseEndpoints(endpoints =>
             {
