@@ -57,6 +57,7 @@ namespace task_3_web_api_
 
             app.UseMiddleware<DemidovichMiddleware>(); // Task_4
 
+
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute("Hello", "{controller=Hello}/{action=Index}"); // task_1
