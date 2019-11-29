@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -25,6 +26,8 @@ namespace task_3_web_api_
 
         public void ConfigureServices(IServiceCollection services)
         {
+            string connection = Configuration.GetConnectionString("DefaultConnection");
+            services.AddDbContext<MobileContext>(options => options.UseSqlServer(connection));
             services.AddControllersWithViews();
             services.AddTransient<IMessageSender, SmsMessageSender>(); //task_7(как sender узнает инфу о куках или полях сессии?).
             services.AddTransient<MessageService>();
@@ -60,11 +63,12 @@ namespace task_3_web_api_
             app.UseMiddleware<DemidovichMiddleware>(); // task_4
             app.UseMiddleware<OperationsMiddleware>(); // task_5
 
-            app.Run(async context => { await context.Response.WriteAsync(messageService.Send()); });
+            //app.Run(async context => { await context.Response.WriteAsync(messageService.Send()); }); // task_7 starter.
 
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute("Hello", "{controller=Hello}/{action=Index}"); // task_1
+                endpoints.MapControllerRoute("DB", "{controller=DB}/{action=Index}/{id?}"); // task_8
             });
         }
 
