@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using task_3_web_api_.Models;
 
 namespace task_3_web_api_
 {
@@ -51,13 +52,34 @@ namespace task_3_web_api_
 //                await Task.FromResult(0);
 //            }); // task_2 end
 
+            app.Map("/formula1", Formula_1);// task_3 begin
+            app.Map("/formula2", Formula_2);// task_3 end
+
+            app.UseMiddleware<DemidovichMiddleware>(); // Task_4
+
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute("Hello", "{controller=Hello}/{action=Index}"); // task_1
+            });
+        }
 
-                endpoints.MapGet("/demidovich", async context => {
-                    await context.Response.WriteAsync($"Result is {x}");
-                });
+        private static void Formula_1(IApplicationBuilder app)
+        {
+            app.Run(async context =>
+            {
+                double x = 100;
+                await context.Response.WriteAsync(
+                    $"Result is {(Math.Sin(x) - ((1 / 3) * Math.Sin(3 * x)) + ((1 / 5) * Math.Sin(5 * x)))}");
+            });
+        }
+
+        private static void Formula_2(IApplicationBuilder app)
+        {
+            app.Run(async context =>
+            {
+                double x = 100;
+                await context.Response.WriteAsync(
+                    $"Result is {(Math.Sqrt(x + System.Math.Sqrt(x + Math.Sqrt(x))))}");
             });
         }
     }
