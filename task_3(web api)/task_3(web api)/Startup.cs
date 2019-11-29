@@ -55,8 +55,8 @@ namespace task_3_web_api_
             app.Map("/formula1", Formula_1);// task_3 begin
             app.Map("/formula2", Formula_2);// task_3 end
 
-            app.UseMiddleware<DemidovichMiddleware>(); // Task_4
-
+            app.UseMiddleware<DemidovichMiddleware>(); // task_4
+            app.UseMiddleware<OperationsMiddleware>(); // task_5
 
             app.UseEndpoints(endpoints =>
             {

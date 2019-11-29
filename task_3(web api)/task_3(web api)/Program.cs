@@ -21,6 +21,7 @@ namespace task_3_web_api_
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();
+                    //webBuilder.UseWebRoot("Static"); Если нам нужна кастомная статик папка, пишем так.
                 });
     }
 }
