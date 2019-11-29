@@ -22,13 +22,11 @@ namespace task_3_web_api_
 
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app)
         { 
             app.UseDeveloperExceptionPage();
@@ -41,9 +39,25 @@ namespace task_3_web_api_
 
             app.UseAuthorization();
 
+            double x = 100; // task_2 begin
+//            app.Use(async (httpContext, func) =>
+//            {
+//                await func.Invoke();
+//                await httpContext.Response.WriteAsync($"Result is {x}");
+//            });
+//            app.Run(async context =>
+//            {
+//                x = (Math.Sin(x) - ((1 / 3) * Math.Sin(3 * x)) + ((1 / 5) * Math.Sin(5 * x)));
+//                await Task.FromResult(0);
+//            }); // task_2 end
+
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapControllerRoute("Hello", "{controller=Hello}/{action=Index}");
+                endpoints.MapControllerRoute("Hello", "{controller=Hello}/{action=Index}"); // task_1
+
+                endpoints.MapGet("/demidovich", async context => {
+                    await context.Response.WriteAsync($"Result is {x}");
+                });
             });
         }
     }
