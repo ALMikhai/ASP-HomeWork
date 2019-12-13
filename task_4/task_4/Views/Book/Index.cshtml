@@ -1,0 +1,19 @@
+﻿@model IEnumerable<task_4.Models.Entities.Book>
+@{
+    ViewData["Title"] = "Books";
+}
+
+<body>
+<h3>Books</h3>
+<table>
+    @foreach (var book in Model)
+    {
+    <tr>
+        <td>@book.Name</td>
+        <td><a href="~/Book/Details/@book.Id">Детали</a></td>
+        <td><a href="~/Book/Edit/@book.Id">Редактировать</a></td>
+        <td><a href="~/Book/Delete/@book.Id">Удалить</a></td>
+    </tr>
+    }
+</table>
+</body>

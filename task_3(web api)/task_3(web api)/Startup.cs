@@ -46,16 +46,16 @@ namespace task_3_web_api_
             app.UseAuthorization();
 
             double x = 100; // task_2 begin
-//            app.Use(async (httpContext, func) =>
-//            {
-//                await func.Invoke();
-//                await httpContext.Response.WriteAsync($"Result is {x}");
-//            });
-//            app.Run(async context =>
-//            {
-//                x = (Math.Sin(x) - ((1 / 3) * Math.Sin(3 * x)) + ((1 / 5) * Math.Sin(5 * x)));
-//                await Task.FromResult(0);
-//            }); // task_2 end
+            //app.Use(async (httpContext, func) =>
+            //{
+            //    await func.Invoke();
+            //    await httpContext.Response.WriteAsync($"Result is {x}");
+            //});
+            //app.Run(async context =>
+            //{
+            //    x = (Math.Sin(x) - ((1 / 3) * Math.Sin(3 * x)) + ((1 / 5) * Math.Sin(5 * x)));
+            //    await Task.FromResult(0);
+            //}); // task_2 end
 
             app.Map("/formula1", Formula_1);// task_3 begin
             app.Map("/formula2", Formula_2);// task_3 end
