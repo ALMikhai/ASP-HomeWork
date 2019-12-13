@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 using task_4.Models.Entities;
 
 namespace task_4.Models
@@ -37,6 +38,8 @@ namespace task_4.Models
                         NumberOfCopies = 14
                     });
             }
+
+            //context.Database.ExecuteSqlCommand("delete from Authors");
 
             if (!context.Authors.Any())
             {

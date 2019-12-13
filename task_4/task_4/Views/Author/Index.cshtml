@@ -1,0 +1,21 @@
+﻿@model IEnumerable<task_4.Models.Entities.Author>
+@{
+    ViewData["Title"] = "Authors";
+}
+
+<body>
+    <h3>Authors</h3>
+    <table>
+        @foreach (var author in Model)
+        {
+            <tr>
+                <td>@author.FirstName</td>
+                <td>@author.SecondName</td>
+                <td><a href="~/Author/Details/@author.Id">Детали</a></td>
+                <td><a href="~/Author/Edit/@author.Id">Редактировать</a></td>
+                <td><a href="~/Author/Delete/@author.Id">Удалить</a></td>
+            </tr>
+        }
+    </table>
+    <a class="nav-link text-dark" asp-area="" asp-controller="Author" asp-action="Create">Добавить</a>
+</body>
