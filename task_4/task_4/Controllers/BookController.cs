@@ -19,35 +19,37 @@ namespace task_4.Controllers
             _context = context;
         }
 
-        // GET: Book
+        // GET: Book +
         public ActionResult Index()
         {
             return View(_context.Books.ToList());
         }
 
-        // GET: Book/Details/5
+        // GET: Book/Details/5 +
         public ActionResult Details(int id)
         {
             Book book = _context.Books.Find(id);
-            return View(new List<Book>{book});
+            if (book == null)
+                return NotFound();
+            return View(book);
         }
 
-        // GET: Book/Create
+        // GET: Book/Create +
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Book/Create
+        // POST: Book/Create +
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public ActionResult Create(Book book)
         {
             try
             {
-                // TODO: Add insert logic here
-
-                return RedirectToAction(nameof(Index));
+                _context.Books.Add(book);
+                _context.SaveChanges();
+                return RedirectToAction("Index");
             }
             catch
             {
@@ -55,22 +57,25 @@ namespace task_4.Controllers
             }
         }
 
-        // GET: Book/Edit/5
+        // GET: Book/Edit/5 
         public ActionResult Edit(int id)
         {
-            return View();
+            Book book = _context.Books.Find(id);
+            if (book == null)
+                return NotFound();
+            return View(book);
         }
 
         // POST: Book/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public ActionResult Edit(Book book)
         {
             try
             {
-                // TODO: Add update logic here
-
-                return RedirectToAction(nameof(Index));
+                _context.Books.Update(book);
+                _context.SaveChanges();
+                return RedirectToAction("Index");
             }
             catch
             {
@@ -81,19 +86,22 @@ namespace task_4.Controllers
         // GET: Book/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            Book book = _context.Books.Find(id);
+            if (book == null)
+                return NotFound();
+            return View(book);
         }
 
         // POST: Book/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public ActionResult Delete(Book book)
         {
             try
             {
-                // TODO: Add delete logic here
-
-                return RedirectToAction(nameof(Index));
+                _context.Books.Remove(book);
+                _context.SaveChanges();
+                return RedirectToAction("Index");
             }
             catch
             {

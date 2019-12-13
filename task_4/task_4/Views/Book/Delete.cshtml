@@ -1,0 +1,16 @@
+﻿@model task_4.Models.Entities.Book
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h1>Delete</h1>
+
+@Html.DisplayForModel()
+
+<div>
+    <form asp-controller="Book" asp-action="Delete" method="post">
+        <div>
+            <input type="submit" class="btn" value="Delete"/>
+        </div>
+    </form>
+</div>

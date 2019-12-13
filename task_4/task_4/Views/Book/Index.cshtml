@@ -8,12 +8,13 @@
 <table>
     @foreach (var book in Model)
     {
-    <tr>
-        <td>@book.Name</td>
-        <td><a href="~/Book/Details/@book.Id">Детали</a></td>
-        <td><a href="~/Book/Edit/@book.Id">Редактировать</a></td>
-        <td><a href="~/Book/Delete/@book.Id">Удалить</a></td>
-    </tr>
+        <tr>
+            <td>@book.Name</td>
+            <td><a href="~/Book/Details/@book.Id">Детали</a></td>
+            <td><a href="~/Book/Edit/@book.Id">Редактировать</a></td>
+            <td><a href="~/Book/Delete/@book.Id">Удалить</a></td>
+        </tr>
     }
 </table>
+<a class="nav-link text-dark" asp-area="" asp-controller="Book" asp-action="Create">Добавить</a>
 </body>
