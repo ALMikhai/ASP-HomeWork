@@ -1,0 +1,35 @@
+﻿@model IEnumerable<Phones>
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">NewPhones(from task 3)</h1>
+    
+    <table>
+        <tr>
+            <td>Модель</td>
+            <td>Производитель</td>
+            <td>Цена</td>
+            <td>Новое поле</td>
+            <td>Ещё одно поле</td>
+            <td></td>
+        </tr>
+        @foreach (var phone in Model)
+        {
+    <tr>
+        <td>@phone.Name</td>
+        <td>@phone.Company</td>
+        <td>@phone.Price</td>
+        <td>@phone.NewField</td>
+        <td>@phone.AnotherField</td>
+        <td>
+            <button>
+                <a href"#">Купить</a>
+            </button>
+        </td>
+    </tr>
+        }
+    </table>
+
+</div>
