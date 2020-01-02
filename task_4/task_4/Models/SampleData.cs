@@ -48,21 +48,24 @@ namespace task_4.Models
                     {
                         FirstName = "Lev",
                         SecondName = "Tolstoy",
-                        DateOfBirthday = new DateTime(1828, 8, 1)
+                        DateOfBirthday = new DateTime(1828, 8, 1),
+                        CreationDateTime = new DateTime(1990, 10, 21)
                     },
 
                     new Author 
                     {
                         FirstName = "Nikolay",
                         SecondName = "Gogol",
-                        DateOfBirthday = new DateTime(1809, 4, 1)
+                        DateOfBirthday = new DateTime(1809, 4, 1),
+                        CreationDateTime = DateTime.Now
                     },
 
                     new Author
                     {
                         FirstName = "WoW",
                         SecondName = "Community",
-                        DateOfBirthday = new DateTime(2017, 8, 19)
+                        DateOfBirthday = new DateTime(2017, 8, 19),
+                        CreationDateTime = new DateTime(2015, 1, 1)
                     });
             }
 

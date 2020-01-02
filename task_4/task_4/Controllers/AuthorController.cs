@@ -19,9 +19,33 @@ namespace task_4.Controllers
         }
 
         // GET: Author
-        public ActionResult Index()
+        public ActionResult Index(string sortOrder, string searchString)
         {
-            return View(_context.Authors.ToList());
+            ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "Name_desc" : "";
+            ViewBag.SecondNameSortParm = sortOrder == "SecondName" ? "SecondName_desc" : "SecondName";
+            var authors = from a in _context.Authors
+                select a;
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                authors = authors.Where(s => s.FirstName.Contains(searchString)
+                                               || s.SecondName.Contains(searchString));
+            }
+            switch (sortOrder)
+            {
+                case "Name_desc":
+                    authors = authors.OrderByDescending(s => s.FirstName);
+                    break;
+                case "SecondName":
+                    authors = authors.OrderBy(s => s.SecondName);
+                    break;
+                case "SecondName_desc":
+                    authors = authors.OrderByDescending(s => s.SecondName);
+                    break;
+                default:
+                    authors = authors.OrderBy(s => s.FirstName);
+                    break;
+            }
+            return View(authors.ToList());
         }
 
         // GET: Author/Details/5
@@ -46,6 +70,7 @@ namespace task_4.Controllers
         {
             try
             {
+                author.CreationDateTime = DateTime.Now;
                 _context.Authors.Add(author);
                 _context.SaveChanges();
                 return RedirectToAction("Index");
